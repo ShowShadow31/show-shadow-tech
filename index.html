@@ -26,7 +26,6 @@
             padding: 10px 0;
             z-index: 100;
         }
-        /* Mode sombre automatique pour water.css */
         @media (prefers-color-scheme: dark) {
             nav { background: #202b38; }
         }
@@ -35,17 +34,18 @@
             border: 1px solid var(--brand-color);
             color: var(--brand-color);
             cursor: pointer;
+            transition: 0.3s;
         }
         button.nav-btn.active {
             background-color: var(--brand-color);
             color: white;
         }
         .page {
-            display: none; /* Cache les pages par défaut */
+            display: none;
             animation: fadeIn 0.4s ease;
         }
         .page.active {
-            display: block; /* Affiche la page active */
+            display: block;
         }
         .contact-box {
             border: 2px solid var(--brand-color);
@@ -63,8 +63,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Optimisation tableau mobile */
         .table-container { overflow-x: auto; }
+        tr:hover { background-color: rgba(0, 112, 243, 0.05); }
     </style>
 </head>
 <body>
@@ -82,7 +82,7 @@
         <p><em>L'expertise informatique par <span class="highlight">Elouen</span>, un vrai passionné ! ⚡</em></p>
         <p><strong>👦 14 ans | Élève de 3ème à Pouvourville 🏫</strong></p>
         <p>L'informatique n'est pas juste un travail pour moi, c'est ma <strong>passion</strong> depuis toujours ! J'adore optimiser et redonner vie aux machines. 💻🔥</p>
-        <p>Que vous ayez besoin d'un nouveau PC ou que votre ancienne machine soit devenue trop lente, je suis là pour vous aider.</p>
+        <p>Que vous ayez besoin d'un nouveau PC performant ou que votre ancienne machine soit devenue trop lente, je trouve la solution adaptée à vos besoins et à votre budget.</p>
     </section>
 
     <section id="tarifs" class="page">
@@ -145,7 +145,7 @@
                 </tbody>
             </table>
         </div>
-        <p><small><em>*Tous les prix sont étudiés au cas par cas selon la complexité.</em></small></p>
+        <p><small><em>*Tous les prix sont étudiés au cas par cas selon la complexité de l'intervention.</em></small></p>
     </section>
 
     <section id="contact" class="page">
@@ -164,19 +164,18 @@
 
     <script>
         function showPage(pageId) {
-            // 1. Cacher toutes les pages
+            // Cacher les pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
 
-            // 2. Désactiver tous les boutons
+            // Désactiver les boutons
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // 3. Afficher la page demandée
+            // Afficher la bonne page
             document.getElementById(pageId).classList.add('active');
 
-            // 4. Activer le bon bouton
-            // On cherche le bouton qui contient le bon ID dans son appel onclick
+            // Activer le bon bouton
             const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(pageId));
             if (activeBtn) activeBtn.classList.add('active');
         }
