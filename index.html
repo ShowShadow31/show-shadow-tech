@@ -4,144 +4,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <title>Show Shadow - Expertise Informatique Toulouse</title>
+    <title>Show Shadow - PC Builder Pro</title>
     <style>
-        :root {
-            --brand-color: #0070f3;
-            --server-color: #27ae60;
-            --eco-color: #c0392b;
-            --accent-color: #f1c40f;
-        }
+        :root { --brand: #0070f3; --bg-card: rgba(255, 255, 255, 0.05); }
         .logo-container { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
-        .logo-img { height: 80px; width: auto; border-radius: 8px; }
-        .badge { background-color: var(--brand-color); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; }
-        .badge-status { background-color: var(--server-color); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-        
-        nav { 
-            display: flex; 
-            gap: 10px; 
-            margin-bottom: 20px; 
-            position: sticky; 
-            top: 0; 
-            background: #fff; 
-            padding: 10px 0; 
-            z-index: 100; 
-            border-bottom: 1px solid #eee; 
-            overflow-x: auto; 
-            scrollbar-width: none;
-        }
-        nav::-webkit-scrollbar { display: none; }
-        
-        @media (prefers-color-scheme: dark) { nav { background: #202b38; border-bottom: 1px solid #333; } }
-        
-        button.nav-btn { 
-            background-color: transparent; 
-            border: 1px solid var(--brand-color); 
-            color: var(--brand-color); 
-            cursor: pointer; 
-            transition: 0.3s; 
-            white-space: nowrap; 
-        }
-        button.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,112,243,0.2); }
-        button.nav-btn.active { background-color: var(--brand-color); color: white; }
-        
-        .page { display: none; animation: fadeIn 0.4s ease; }
+        .logo-img { height: 70px; border-radius: 8px; }
+        nav { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #444; padding-bottom: 10px;}
+        button.nav-btn { background: none; border: 1px solid var(--brand); color: var(--brand); cursor: pointer; }
+        button.nav-btn.active { background: var(--brand); color: white; }
+        .page { display: none; animation: fadeIn 0.3s ease; }
         .page.active { display: block; }
-        .highlight { color: var(--brand-color); font-weight: bold; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .price-card { border-left: 5px solid var(--brand-color); padding: 15px; margin: 20px 0; background: rgba(255, 255, 255, 0.05); border-radius: 0 8px 8px 0; }
-        .calculator { background: rgba(0, 112, 243, 0.1); padding: 15px; border-radius: 8px; margin-top: 10px; }
-        select { width: 100%; margin: 10px 0; border: 1px solid var(--brand-color); }
-        .total-price { font-size: 1.8em; color: var(--brand-color); font-weight: bold; text-align: center; margin-top: 10px; }
+        .config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .config-grid { grid-template-columns: 1fr; } }
+        .total-box { position: sticky; bottom: 20px; background: var(--brand); color: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        select { width: 100%; margin-bottom: 10px; }
+        label { font-size: 0.8em; text-transform: uppercase; opacity: 0.8; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo-container">
-            <img src="showshadow.png" alt="Show Shadow Logo" class="logo-img">
-            <div><span class="badge">Toulouse</span> <span class="badge badge-status">Disponible</span></div>
+            <img src="showshadow.png" alt="Show Shadow" class="logo-img">
+            <h1 style="margin:0">Show Shadow</h1>
         </div>
-        <nav id="main-nav">
-            <button class="nav-btn active" onclick="showPage('home', this)">Accueil</button>
-            <button class="nav-btn" onclick="showPage('tarifs', this)">Maintenance PC</button>
-            <button class="nav-btn" onclick="showPage('serveurs', this)">Packs Serveurs</button>
-            <button class="nav-btn" onclick="showPage('recup', this)">Recyclage</button>
+        <nav>
+            <button class="nav-btn active" onclick="showPage('config', this)">Configurateur</button>
+            <button class="nav-btn" onclick="showPage('maintenance', this)">Maintenance & SSD</button>
+            <button class="nav-btn" onclick="showPage('serveurs', this)">Solutions Serveurs</button>
             <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
         </nav>
     </header>
 
-    <section id="home" class="page active">
-        <p><em>L'expertise informatique par <span class="highlight">Elouen</span>.</em></p>
-        <p><strong>👦 Étudiant & Passionné de Tech à Pouvourville 🏫</strong></p>
-        <p>Je propose mes services pour l'entretien de vos <strong>PC Fixes</strong> et l'installation de systèmes d'exploitation comme <strong>Linux (Debian)</strong>.</p>
+    <!-- CONFIGURATEUR -->
+    <section id="config" class="page active">
+        <h2>🛠️ Configurateur Intelligent</h2>
+        <div class="config-grid">
+            <div class="card">
+                <label>1. Processeur (CPU)</label>
+                <select id="cpu" onchange="filterMobo(); updatePrice();">
+                    <optgroup label="AMD Ryzen">
+                        <option value="115" data-socket="am4">Ryzen 5 5500 (6c/12t)</option>
+                        <option value="145" data-socket="am4">Ryzen 5 5600X (6c/12t)</option>
+                        <option value="210" data-socket="am5">Ryzen 5 7600 (6c/12t)</option>
+                        <option value="395" data-socket="am5">Ryzen 7 7800X3D (L'élite Gaming)</option>
+                    </optgroup>
+                    <optgroup label="Intel Core">
+                        <option value="110" data-socket="lga">i3-12100F (Bureautique/Gaming)</option>
+                        <option value="195" data-socket="lga">i5-13400F (Polyvalent)</option>
+                        <option value="320" data-socket="lga">i5-14600K (Performance)</option>
+                        <option value="590" data-socket="lga">i9-14900K (Extrême)</option>
+                    </optgroup>
+                </select>
+
+                <label>2. Carte Mère (Compatible)</label>
+                <select id="mobo" onchange="updatePrice()">
+                    <option value="85" class="am4">ASRock B450M-HDV (AM4)</option>
+                    <option value="130" class="am4">MSI B550-A PRO (AM4)</option>
+                    <option value="175" class="am5">Gigabyte B650 Eagle AX (AM5)</option>
+                    <option value="260" class="am5">ASUS ROG STRIX B650-A (AM5)</option>
+                    <option value="105" class="lga">Gigabyte B760M DS3H (LGA1700)</option>
+                    <option value="230" class="lga">MSI MAG Z790 TOMAHAWK (LGA1700)</option>
+                </select>
+
+                <label>3. Mémoire Vive (RAM)</label>
+                <select id="ram" onchange="updatePrice()">
+                    <option value="42">16 Go DDR4 (3200 MHz)</option>
+                    <option value="78">32 Go DDR4 (3600 MHz)</option>
+                    <option value="115">32 Go DDR5 (6000 MHz)</option>
+                    <option value="230">64 Go DDR5 (Optimisée IA/Rendu)</option>
+                </select>
+            </div>
+
+            <div class="card">
+                <label>4. Carte Graphique (GPU)</label>
+                <select id="gpu" onchange="updatePrice()">
+                    <option value="0">Graphismes intégrés (0€)</option>
+                    <option value="315">RTX 4060 (1080p Ultra)</option>
+                    <option value="630">RTX 4070 Super (1440p)</option>
+                    <option value="1050">RTX 4080 Super (4K Gaming)</option>
+                    <option value="1950">RTX 4090 (L'ultime)</option>
+                </select>
+
+                <label>5. Alimentation (PSU)</label>
+                <select id="psu" onchange="updatePrice()">
+                    <option value="55">550W Bronze (Bureautique)</option>
+                    <option value="95">750W Gold (Gaming Standard)</option>
+                    <option value="160">850W Platinum (High-End)</option>
+                    <option value="240">1000W+ PCIe 5.0 (RTX 4090 Ready)</option>
+                </select>
+
+                <label>6. Boîtier & Montage</label>
+                <select id="service" onchange="updatePrice()">
+                    <option value="120">Boîtier Standard + Montage (120€)</option>
+                    <option value="180">Boîtier Airflow + Montage Pro (180€)</option>
+                    <option value="250">Boîtier Premium + Setup OS & Drivers (250€)</option>
+                </select>
+            </div>
+        </div>
+        <div class="total-box">
+            <span style="font-size: 1.2em;">Estimation Totale (Matériel + Service)</span><br>
+            <strong id="final-price" style="font-size: 2.5em;">0€</strong>
+        </div>
     </section>
 
-    <section id="tarifs" class="page">
-        <h2>🛠️ Maintenance & Upgrade</h2>
+    <!-- MAINTENANCE -->
+    <section id="maintenance" class="page">
+        <h2>🛠️ Upgrades & SSD KingSpec</h2>
         <table>
-            <tr><td><strong>Main d'œuvre Montage PC</strong></td><td>Dès 40€</td></tr>
-            <tr><td><strong>Mise à jour Windows 10 vers 11</strong></td><td>20€</td></tr>
-            <tr><td><strong>Installation Système (Windows / Linux)</strong></td><td>30€</td></tr>
+            <tr><td>Migration Windows 10 vers 11</td><td>45€</td></tr>
+            <tr><td>Nettoyage & Pâte thermique Artic MX-6</td><td>60€</td></tr>
         </table>
+        <div style="background: var(--bg-card); padding: 20px; border-radius: 8px;">
+            <h4>Stockage KingSpec (Pose comprise)</h4>
+            <select id="ssd" onchange="document.getElementById('ssd-res').innerText = this.value + '€'">
+                <option value="45">128 Go - 45€</option>
+                <option value="65">256 Go - 65€</option>
+                <option value="95">512 Go - 95€</option>
+                <option value="145">1 To - 145€</option>
+                <option value="260">2 To - 260€</option>
+            </select>
+            <p style="text-align: center; font-size: 1.5em; font-weight: bold;" id="ssd-res">45€</p>
+        </div>
+    </section>
 
-        <div class="price-card" style="border-left-color: var(--brand-color);">
-            <h4>🚀 Pack Boost SSD (Clé en main)</h4>
-            <p>Installation du matériel, transfert de vos données et optimisation inclus.</p>
-            <div class="calculator">
-                <label for="ssd-size">Choisissez votre nouvelle capacité :</label>
-                <select id="ssd-size" onchange="calculateSSD()">
-                    <option value="50">Usage Bureautique (240 Go)</option>
-                    <option value="70">Usage Standard (500 Go)</option>
-                    <option value="100">Usage Intensif / Jeux (1 To)</option>
-                </select>
-                <div class="total-price" id="ssd-total">Prix Total : 50€</div>
-                <p style="text-align: center;"><small><em>Matériel + Installation inclus.</em></small></p>
+    <!-- SERVEURS -->
+    <section id="serveurs" class="page">
+        <h2>🚀 Solutions Serveurs Hautes Performances</h2>
+        <div class="config-grid">
+            <div class="card" style="border-left: 4px solid var(--brand); padding: 15px;">
+                <h4>🛡️ Pack Sécurité Pi-Hole</h4>
+                <p>Blocage pub réseau + VPN sécurisé.</p>
+                <p><strong>Total : 110€</strong></p>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--brand); padding: 15px;">
+                <h4>☁️ Cluster Nextcloud (Multi-utilisateurs)</h4>
+                <p>Votre Google Drive privé avec 4 To de stockage.</p>
+                <p><strong>Total : 380€</strong></p>
+            </div>
+            <div class="card" style="border-left: 4px solid #9b59b6; padding: 15px;">
+                <h4>🧠 Serveur IA / Deep Learning</h4>
+                <p>Setup complet avec Docker, GPU local et interface Web.</p>
+                <p><strong>Dès : 2 500€</strong></p>
+            </div>
+            <div class="card" style="border-left: 4px solid #e67e22; padding: 15px;">
+                <h4>🎥 Node de Rendu 3D (Blender/Maya)</h4>
+                <p>PC sans écran optimisé pour le calcul intensif.</p>
+                <p><strong>Dès : 1 800€</strong></p>
             </div>
         </div>
     </section>
 
-    <section id="serveurs" class="page">
-        <h2>🍓 Packs Serveurs (Matériel Inclus)</h2>
-        <div class="price-card" style="border-left-color: var(--eco-color);">
-            <h4>🛡️ Pack "Sentinelle"</h4>
-            <p>Protection réseau et blocage des publicités via Pi-hole.</p>
-            <p><strong>Prix Total : 45€</strong> <span class="badge" style="background:var(--eco-color)">Éco-Recyclage</span></p>
-        </div>
-    </section>
-
-    <section id="recup" class="page">
-        <h2>♻️ Don & Récupération</h2>
-        <p>Je récupère vos anciens PC, composants et accessoires pour les reconditionner ou les recycler proprement.</p>
-    </section>
-
     <section id="contact" class="page">
-        <div style="text-align: center; border: 2px solid var(--brand-color); padding: 20px; border-radius: 8px;">
-            <h3>🚀 Un projet ?</h3>
-            <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-            <p>🏠 <em>Secteurs : Pouvourville, Rangueil, Ramonville, Castanet.</em></p>
+        <div style="text-align:center; padding: 40px;">
+            <h3>Besoin d'un devis précis ?</h3>
+            <p>Secteurs : <strong>Pouvourville / Rangueil / Ramonville</strong></p>
+            <p>Email : <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
         </div>
     </section>
-
-    <footer>
-        <p><small>© 2026 - Show Shadow | Elouen | Propulsé par <span class="highlight">Debian 13</span></small></p>
-    </footer>
 
     <script>
-        function showPage(pageId, btn) {
+        function showPage(id, btn) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            document.getElementById(id).classList.add('active');
             btn.classList.add('active');
             window.scrollTo(0,0);
         }
 
-        function calculateSSD() {
-            const totalPrice = document.getElementById('ssd-size').value;
-            document.getElementById('ssd-total').innerText = "Prix Total : " + totalPrice + "€";
+        function filterMobo() {
+            const cpu = document.getElementById('cpu');
+            const socket = cpu.options[cpu.selectedIndex].getAttribute('data-socket');
+            const moboSelect = document.getElementById('mobo');
+            
+            Array.from(moboSelect.options).forEach(opt => {
+                opt.style.display = opt.classList.contains(socket) ? 'block' : 'none';
+            });
+            
+            // Auto-select first visible option to avoid incompatibility
+            const firstVisible = Array.from(moboSelect.options).find(opt => opt.style.display === 'block');
+            if (firstVisible) moboSelect.value = firstVisible.value;
         }
+
+        function updatePrice() {
+            let total = 0;
+            ['cpu', 'mobo', 'ram', 'gpu', 'psu', 'service'].forEach(id => {
+                total += parseInt(document.getElementById(id).value);
+            });
+            document.getElementById('final-price').innerText = total + "€";
+        }
+
+        // Init
+        filterMobo();
+        updatePrice();
     </script>
 </body>
 </html>
