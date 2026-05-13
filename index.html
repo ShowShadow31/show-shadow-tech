@@ -12,205 +12,136 @@
             --eco-color: #c0392b;
             --accent-color: #f1c40f;
         }
-        .badge {
-            background-color: var(--brand-color);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-        }
-        .badge-status {
-            background-color: var(--server-color);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-        nav {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            position: sticky;
-            top: 0;
-            background: #fff;
-            padding: 10px 0;
-            z-index: 100;
-            border-bottom: 1px solid #eee;
-            overflow-x: auto;
-        }
-        @media (prefers-color-scheme: dark) {
-            nav { background: #202b38; border-bottom: 1px solid #333; }
-            nav::-webkit-scrollbar { display: none; }
-        }
-        button.nav-btn {
-            background-color: transparent;
-            border: 1px solid var(--brand-color);
-            color: var(--brand-color);
-            cursor: pointer;
-            transition: 0.3s;
-            white-space: nowrap;
-        }
-        button.nav-btn.active {
-            background-color: var(--brand-color);
-            color: white;
-        }
-        button.nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,112,243,0.2);
-        }
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        .page.active {
-            display: block;
-        }
-        .contact-box {
-            border: 2px solid var(--brand-color);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            background-color: rgba(0, 112, 243, 0.05);
-            margin-top: 20px;
-        }
-        .highlight { color: var(--brand-color); font-weight: bold; }
-        h2 { border-bottom: 2px solid var(--brand-color); display: inline-block; }
+        .logo-container { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+        .logo-img { height: 80px; width: auto; border-radius: 8px; }
+        .badge { background-color: var(--brand-color); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; }
+        .badge-status { background-color: var(--server-color); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        nav { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 20px; 
+            position: sticky; 
+            top: 0; 
+            background: #fff; 
+            padding: 10px 0; 
+            z-index: 100; 
+            border-bottom: 1px solid #eee; 
+            overflow-x: auto; 
+            scrollbar-width: none;
         }
-
-        .table-container { overflow-x: auto; }
-        tr:hover { background-color: rgba(0, 112, 243, 0.05); }
-
-        .price-card {
-            border-left: 5px solid var(--brand-color);
-            padding: 15px;
-            margin: 20px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        nav::-webkit-scrollbar { display: none; }
+        
+        @media (prefers-color-scheme: dark) { nav { background: #202b38; border-bottom: 1px solid #333; } }
+        
+        button.nav-btn { 
+            background-color: transparent; 
+            border: 1px solid var(--brand-color); 
+            color: var(--brand-color); 
+            cursor: pointer; 
+            transition: 0.3s; 
+            white-space: nowrap; 
         }
-        .price-card h4 { margin-top: 0; color: var(--brand-color); }
-        .price-card ul { margin-bottom: 10px; }
+        button.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,112,243,0.2); }
+        button.nav-btn.active { background-color: var(--brand-color); color: white; }
+        
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
+        .highlight { color: var(--brand-color); font-weight: bold; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .price-card { border-left: 5px solid var(--brand-color); padding: 15px; margin: 20px 0; background: rgba(255, 255, 255, 0.05); border-radius: 0 8px 8px 0; }
+        .calculator { background: rgba(0, 112, 243, 0.1); padding: 15px; border-radius: 8px; margin-top: 10px; }
+        select { width: 100%; margin: 10px 0; border: 1px solid var(--brand-color); }
+        .total-price { font-size: 1.8em; color: var(--brand-color); font-weight: bold; text-align: center; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🎮 Show Shadow <span class="badge">Toulouse</span> <span class="badge badge-status">Disponible</span></h1>
+        <div class="logo-container">
+            <img src="showshadow.png" alt="Show Shadow Logo" class="logo-img">
+            <div><span class="badge">Toulouse</span> <span class="badge badge-status">Disponible</span></div>
+        </div>
         <nav id="main-nav">
-            <button class="nav-btn active" onclick="showPage('home')">Accueil</button>
-            <button class="nav-btn" onclick="showPage('tarifs')">Maintenance PC</button>
-            <button class="nav-btn" onclick="showPage('serveurs')">Packs Serveurs</button>
-            <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+            <button class="nav-btn active" onclick="showPage('home', this)">Accueil</button>
+            <button class="nav-btn" onclick="showPage('tarifs', this)">Maintenance PC</button>
+            <button class="nav-btn" onclick="showPage('serveurs', this)">Packs Serveurs</button>
+            <button class="nav-btn" onclick="showPage('recup', this)">Recyclage</button>
+            <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
         </nav>
     </header>
 
-    <!-- SECTION ACCUEIL -->
     <section id="home" class="page active">
-        <p><em>L'expertise informatique par <span class="highlight">Elouen</span>, passionné de hardware et système ! ⚡</em></p>
-        <p><strong>👦 14 ans | Étudiant & Tech Enthusiast à Pouvourville 🏫</strong></p>
-        <p>Spécialiste du <strong>PC Fixe</strong> et des solutions <strong>Open Source</strong>. Je redonne vie à vos machines et je configure vos serveurs domestiques sur-mesure.</p>
-        <blockquote>"Pourquoi acheter neuf quand on peut optimiser l'existant ?"</blockquote>
+        <p><em>L'expertise informatique par <span class="highlight">Elouen</span>.</em></p>
+        <p><strong>👦 Étudiant & Passionné de Tech à Pouvourville 🏫</strong></p>
+        <p>Je propose mes services pour l'entretien de vos <strong>PC Fixes</strong> et l'installation de systèmes d'exploitation comme <strong>Linux (Debian)</strong>.</p>
     </section>
 
-    <!-- SECTION MAINTENANCE PC -->
     <section id="tarifs" class="page">
-        <h2>🛠️ Maintenance & Expertise PC</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Service</th>
-                        <th>Description</th>
-                        <th>Tarif*</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>Montage PC Fixe 🖥️</strong></td><td>Assemblage complet, cable management et tests.</td><td>Dès 40€</td></tr>
-                    <tr><td><strong>Pack Boost SSD 🚀</strong></td><td>Installation SSD + Transfert système (vitesse x10).</td><td>25€</td></tr>
-                    <tr><td><strong>Nettoyage Pro 🧹</strong></td><td>Dépoussiérage + Changement pâte thermique.</td><td>30€</td></tr>
-                    <tr><td><strong>Diagnostic de Panne 🔍</strong></td><td>Recherche de panne. Offert si réparation !</td><td>15€</td></tr>
-                    <tr><td><strong>Installation OS Pro 💿</strong></td><td>Windows ou Debian avec drivers et optimisations.</td><td>30€</td></tr>
-                    <tr><td><strong>Check-up Sécurité 🛡️</strong></td><td>Suppression virus et blocage publicités.</td><td>20€</td></tr>
-                    <tr><td><strong>Spécialité Linux 🐧</strong></td><td>Installation Debian/Mint pour sauver un PC lent.</td><td>25€</td></tr>
-                    <tr><td><strong>Aide à la Vente 🏷️</strong></td><td>Photos pro et rédaction de votre annonce LBC.</td><td>15€</td></tr>
-                </tbody>
-            </table>
+        <h2>🛠️ Maintenance & Upgrade</h2>
+        <table>
+            <tr><td><strong>Main d'œuvre Montage PC</strong></td><td>Dès 40€</td></tr>
+            <tr><td><strong>Mise à jour Windows 10 vers 11</strong></td><td>20€</td></tr>
+            <tr><td><strong>Installation Système (Windows / Linux)</strong></td><td>30€</td></tr>
+        </table>
+
+        <div class="price-card" style="border-left-color: var(--brand-color);">
+            <h4>🚀 Pack Boost SSD (Clé en main)</h4>
+            <p>Installation du matériel, transfert de vos données et optimisation inclus.</p>
+            <div class="calculator">
+                <label for="ssd-size">Choisissez votre nouvelle capacité :</label>
+                <select id="ssd-size" onchange="calculateSSD()">
+                    <option value="50">Usage Bureautique (240 Go)</option>
+                    <option value="70">Usage Standard (500 Go)</option>
+                    <option value="100">Usage Intensif / Jeux (1 To)</option>
+                </select>
+                <div class="total-price" id="ssd-total">Prix Total : 50€</div>
+                <p style="text-align: center;"><small><em>Matériel + Installation inclus.</em></small></p>
+            </div>
         </div>
-        <p><small><em>*Tarifs hors coût des pièces détachées. Devis gratuit sur demande.</em></small></p>
     </section>
 
-    <!-- SECTION SERVEURS CLÉ EN MAIN -->
     <section id="serveurs" class="page">
         <h2>🍓 Packs Serveurs (Matériel Inclus)</h2>
-        <p>Des solutions clé en main : je fournis le matériel, je l'installe et je le configure chez vous.</p>
-        
         <div class="price-card" style="border-left-color: var(--eco-color);">
-            <h4>🛡️ Pack "Sentinelle" (Base Raspberry Pi 2)</h4>
-            <p><strong>Usage :</strong> Bloqueur de publicités (Pi-hole) pour tous les appareils de la maison.</p>
-            <ul>
-                <li><strong>Inclus :</strong> Raspberry Pi 2 d'occasion, alimentation, carte SD.</li>
-                <li><strong>Service :</strong> Installation et branchement sur votre box internet.</li>
-            </ul>
-            <p><strong>Tarif Tout Inclus : 45€</strong> <span class="badge" style="background:var(--eco-color)">Éco-Recyclage</span></p>
-        </div>
-
-        <div class="price-card" style="border-left-color: var(--server-color);">
-            <h4>🚀 Pack "Power-Station" (Base Raspberry Pi 5)</h4>
-            <p><strong>Usage :</strong> Serveur de jeux (Minecraft), Cloud privé (Nextcloud) ou Media Center 4K.</p>
-            <ul>
-                <li><strong>Inclus :</strong> Raspberry Pi 5 neuf, refroidissement actif, SD haute vitesse.</li>
-                <li><strong>Service :</strong> Configuration complète de 2 services au choix.</li>
-            </ul>
-            <p><strong>Tarif Tout Inclus : Dès 120€</strong> <span class="badge" style="background:var(--server-color)">Haute Performance</span></p>
-        </div>
-
-        <div class="price-card" style="border-left-color: var(--accent-color);">
-            <h4>⚙️ Installation Seule</h4>
-            <p>Vous avez déjà votre Raspberry Pi ? Je m'occupe uniquement de la configuration logicielle (OS, Docker, Services).</p>
-            <p><strong>Tarif unique : 30€</strong></p>
+            <h4>🛡️ Pack "Sentinelle"</h4>
+            <p>Protection réseau et blocage des publicités via Pi-hole.</p>
+            <p><strong>Prix Total : 45€</strong> <span class="badge" style="background:var(--eco-color)">Éco-Recyclage</span></p>
         </div>
     </section>
 
-    <!-- SECTION CONTACT -->
+    <section id="recup" class="page">
+        <h2>♻️ Don & Récupération</h2>
+        <p>Je récupère vos anciens PC, composants et accessoires pour les reconditionner ou les recycler proprement.</p>
+    </section>
+
     <section id="contact" class="page">
-        <div class="contact-box">
-            <h3>🚀 Un projet ? Un diagnostic ?</h3>
-            <p>Soutenez un jeune technicien local passionné ! 🙌</p>
+        <div style="text-align: center; border: 2px solid var(--brand-color); padding: 20px; border-radius: 8px;">
+            <h3>🚀 Un projet ?</h3>
             <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
             <p>🏠 <em>Secteurs : Pouvourville, Rangueil, Ramonville, Castanet.</em></p>
-            <p><strong>Remise en main propre uniquement.</strong></p>
         </div>
     </section>
 
-    <hr>
     <footer>
-        <p><small>© 2026 - Show Shadow | Elouen | Propulsé par <span class="highlight">Debian 13</span> & ❤️</small></p>
+        <p><small>© 2026 - Show Shadow | Elouen | Propulsé par <span class="highlight">Debian 13</span></small></p>
     </footer>
 
     <script>
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
+        function showPage(pageId, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-
-            const activeBtn = Array.from(buttons).find(btn => 
-                btn.getAttribute('onclick').includes("'" + pageId + "'")
-            );
-            if (activeBtn) activeBtn.classList.add('active');
-            
+            btn.classList.add('active');
             window.scrollTo(0,0);
         }
-    </script>
 
+        function calculateSSD() {
+            const totalPrice = document.getElementById('ssd-size').value;
+            document.getElementById('ssd-total').innerText = "Prix Total : " + totalPrice + "€";
+        }
+    </script>
 </body>
 </html>
