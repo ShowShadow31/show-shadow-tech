@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <title>Show Shadow - Expert Tech Toulouse</title>
+    <title>Show Shadow - Expertise Informatique Toulouse</title>
     <style>
         :root {
             --brand-color: #0070f3;
             --server-color: #27ae60;
+            --eco-color: #c0392b;
+            --accent-color: #f1c40f;
         }
         .badge {
             background-color: var(--brand-color);
@@ -40,6 +42,7 @@
         }
         @media (prefers-color-scheme: dark) {
             nav { background: #202b38; border-bottom: 1px solid #333; }
+            nav::-webkit-scrollbar { display: none; }
         }
         button.nav-btn {
             background-color: transparent;
@@ -73,7 +76,6 @@
             margin-top: 20px;
         }
         .highlight { color: var(--brand-color); font-weight: bold; }
-        .server-highlight { color: var(--server-color); font-weight: bold; }
         h2 { border-bottom: 2px solid var(--brand-color); display: inline-block; }
         
         @keyframes fadeIn {
@@ -85,13 +87,15 @@
         tr:hover { background-color: rgba(0, 112, 243, 0.05); }
 
         .price-card {
-            border-left: 4px solid var(--server-color);
-            padding-left: 15px;
-            margin: 15px 0;
-            background: rgba(39, 174, 96, 0.05);
-            padding-top: 5px;
-            padding-bottom: 5px;
+            border-left: 5px solid var(--brand-color);
+            padding: 15px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        .price-card h4 { margin-top: 0; color: var(--brand-color); }
+        .price-card ul { margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -101,22 +105,22 @@
         <nav id="main-nav">
             <button class="nav-btn active" onclick="showPage('home')">Accueil</button>
             <button class="nav-btn" onclick="showPage('tarifs')">Maintenance PC</button>
-            <button class="nav-btn" onclick="showPage('serveurs')">Serveurs & Pi 5</button>
+            <button class="nav-btn" onclick="showPage('serveurs')">Packs Serveurs</button>
             <button class="nav-btn" onclick="showPage('contact')">Contact</button>
         </nav>
     </header>
 
     <!-- SECTION ACCUEIL -->
     <section id="home" class="page active">
-        <p><em>L'expertise informatique par <span class="highlight">Elouen</span>, un vrai passionné ! ⚡</em></p>
-        <p><strong>👦 14 ans | Élève de 3ème à Pouvourville 🏫</strong></p>
-        <p>L'informatique n'est pas juste un travail pour moi, c'est ma <strong>passion</strong> depuis toujours ! J'adore optimiser et redonner vie aux machines. 💻🔥</p>
-        <p>Que vous ayez besoin d'un nouveau PC performant ou que votre ancienne machine soit devenue trop lente, je trouve la solution adaptée à vos besoins et à votre budget.</p>
+        <p><em>L'expertise informatique par <span class="highlight">Elouen</span>, passionné de hardware et système ! ⚡</em></p>
+        <p><strong>👦 14 ans | Étudiant & Tech Enthusiast à Pouvourville 🏫</strong></p>
+        <p>Spécialiste du <strong>PC Fixe</strong> et des solutions <strong>Open Source</strong>. Je redonne vie à vos machines et je configure vos serveurs domestiques sur-mesure.</p>
+        <blockquote>"Pourquoi acheter neuf quand on peut optimiser l'existant ?"</blockquote>
     </section>
 
-    <!-- SECTION TARIFS CLASSIQUES -->
+    <!-- SECTION MAINTENANCE PC -->
     <section id="tarifs" class="page">
-        <h2>🛠️ Maintenance & Boost PC</h2>
+        <h2>🛠️ Maintenance & Expertise PC</h2>
         <div class="table-container">
             <table>
                 <thead>
@@ -127,43 +131,60 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>Montage PC 🖥️</strong></td><td>Assemblage et tests de stabilité.</td><td>Dès 30€</td></tr>
-                    <tr><td><strong>Boost SSD 🚀</strong></td><td>Installation SSD + Clone système.</td><td>20€</td></tr>
-                    <tr><td><strong>Nettoyage 🧹</strong></td><td>Dépoussiérage et changement pâte thermique.</td><td>25€</td></tr>
-                    <tr><td><strong>Spécialité Linux 🐧</strong></td><td>Passage à Debian/Linux Mint (Sécu & Rapidité).</td><td>20€</td></tr>
-                    <tr><td><strong>Reset Password 🔑</strong></td><td>Déblocage session Windows.</td><td>5€</td></tr>
+                    <tr><td><strong>Montage PC Fixe 🖥️</strong></td><td>Assemblage complet, cable management et tests.</td><td>Dès 40€</td></tr>
+                    <tr><td><strong>Pack Boost SSD 🚀</strong></td><td>Installation SSD + Transfert système (vitesse x10).</td><td>25€</td></tr>
+                    <tr><td><strong>Nettoyage Pro 🧹</strong></td><td>Dépoussiérage + Changement pâte thermique.</td><td>30€</td></tr>
+                    <tr><td><strong>Diagnostic de Panne 🔍</strong></td><td>Recherche de panne. Offert si réparation !</td><td>15€</td></tr>
+                    <tr><td><strong>Installation OS Pro 💿</strong></td><td>Windows ou Debian avec drivers et optimisations.</td><td>30€</td></tr>
+                    <tr><td><strong>Check-up Sécurité 🛡️</strong></td><td>Suppression virus et blocage publicités.</td><td>20€</td></tr>
+                    <tr><td><strong>Spécialité Linux 🐧</strong></td><td>Installation Debian/Mint pour sauver un PC lent.</td><td>25€</td></tr>
+                    <tr><td><strong>Aide à la Vente 🏷️</strong></td><td>Photos pro et rédaction de votre annonce LBC.</td><td>15€</td></tr>
                 </tbody>
             </table>
         </div>
+        <p><small><em>*Tarifs hors coût des pièces détachées. Devis gratuit sur demande.</em></small></p>
     </section>
 
-    <!-- NOUVELLE SECTION SERVEURS -->
+    <!-- SECTION SERVEURS CLÉ EN MAIN -->
     <section id="serveurs" class="page">
-        <h2>🍓 Expertise Raspberry Pi 5 & Home Server</h2>
-        <p>Besoin d'un serveur cloud, d'un bloqueur de pub ou d'un serveur de jeu basse consommation ?</p>
+        <h2>🍓 Packs Serveurs (Matériel Inclus)</h2>
+        <p>Des solutions clé en main : je fournis le matériel, je l'installe et je le configure chez vous.</p>
         
-        <div class="price-card">
-            <h4>📦 Forfait "Pi-Cloud"</h4>
-            <p>Installation de votre <strong>Raspberry Pi 5</strong> avec OS 64-bit optimisé + Docker + Nextcloud ou Plex.</p>
-            <p><strong>Prix : 35€</strong> (Main propre ou à distance)</p>
+        <div class="price-card" style="border-left-color: var(--eco-color);">
+            <h4>🛡️ Pack "Sentinelle" (Base Raspberry Pi 2)</h4>
+            <p><strong>Usage :</strong> Bloqueur de publicités (Pi-hole) pour tous les appareils de la maison.</p>
+            <ul>
+                <li><strong>Inclus :</strong> Raspberry Pi 2 d'occasion, alimentation, carte SD.</li>
+                <li><strong>Service :</strong> Installation et branchement sur votre box internet.</li>
+            </ul>
+            <p><strong>Tarif Tout Inclus : 45€</strong> <span class="badge" style="background:var(--eco-color)">Éco-Recyclage</span></p>
         </div>
 
-        <div class="price-card" style="border-left-color: var(--brand-color);">
-            <h4>🛡️ Forfait "Privacy"</h4>
-            <p>Installation de <strong>Pi-hole</strong> ou <strong>AdGuard Home</strong> pour supprimer la pub sur TOUS les appareils de votre maison.</p>
-            <p><strong>Prix : 15€</strong></p>
+        <div class="price-card" style="border-left-color: var(--server-color);">
+            <h4>🚀 Pack "Power-Station" (Base Raspberry Pi 5)</h4>
+            <p><strong>Usage :</strong> Serveur de jeux (Minecraft), Cloud privé (Nextcloud) ou Media Center 4K.</p>
+            <ul>
+                <li><strong>Inclus :</strong> Raspberry Pi 5 neuf, refroidissement actif, SD haute vitesse.</li>
+                <li><strong>Service :</strong> Configuration complète de 2 services au choix.</li>
+            </ul>
+            <p><strong>Tarif Tout Inclus : Dès 120€</strong> <span class="badge" style="background:var(--server-color)">Haute Performance</span></p>
         </div>
 
-        <p><small>💡 <em>Je configure aussi les disques NVMe sur Pi 5 pour des débits ultra-rapides.</em></small></p>
+        <div class="price-card" style="border-left-color: var(--accent-color);">
+            <h4>⚙️ Installation Seule</h4>
+            <p>Vous avez déjà votre Raspberry Pi ? Je m'occupe uniquement de la configuration logicielle (OS, Docker, Services).</p>
+            <p><strong>Tarif unique : 30€</strong></p>
+        </div>
     </section>
 
     <!-- SECTION CONTACT -->
     <section id="contact" class="page">
         <div class="contact-box">
             <h3>🚀 Un projet ? Un diagnostic ?</h3>
+            <p>Soutenez un jeune technicien local passionné ! 🙌</p>
             <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
             <p>🏠 <em>Secteurs : Pouvourville, Rangueil, Ramonville, Castanet.</em></p>
-            <p>💬 Réponse rapide garantie !</p>
+            <p><strong>Remise en main propre uniquement.</strong></p>
         </div>
     </section>
 
@@ -187,7 +208,6 @@
             );
             if (activeBtn) activeBtn.classList.add('active');
             
-            // Scroll en haut auto pour mobile
             window.scrollTo(0,0);
         }
     </script>
