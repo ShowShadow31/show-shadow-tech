@@ -3,157 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Show Shadow - Expert Tech Toulouse</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; max-width: 600px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; color: #333; }
-        header { text-align: center; margin-bottom: 30px; }
-        .logo { height: 70px; border-radius: 8px; }
-        
-        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
-        button { padding: 8px 16px; border: 1px solid #ccc; background: white; cursor: pointer; border-radius: 4px; transition: 0.3s; }
-        button.active { background: #0070f3; color: white; border-color: #0070f3; }
-
-        .page { display: none; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .active-page { display: block; }
-        
-        .highlight { color: #0070f3; font-weight: bold; }
-        .info-box { background: #eef6ff; border-left: 4px solid #0070f3; padding: 10px 15px; margin-top: 15px; font-style: italic; }
-    </style>
-    <title>Show Shadow - Toulouse</title>
-</head>
-<body>
-
-    <header>
-        <img src="showshadow.png" alt="Logo Show Shadow" class="logo">
-        <h1>Show Shadow</h1>
-    </header>
-
-    <nav>
-        <button class="nav-btn active" onclick="ouvrirPage('presentation', this)">Présentation</button>
-        <button class="nav-btn" onclick="ouvrirPage('pc', this)">Trucs sur PC</button>
-        <button class="nav-btn" onclick="ouvrirPage('contact', this)">Contact</button>
-    </nav>
-
-    <!-- PRÉSENTATION -->
-    <section id="presentation" class="page active-page">
-        <h2>À propos</h2>
-        <p>Je suis un étudiant passionné de tech basé à <span class="highlight">Pouvourville et Rangueil</span>.</p>
-        <p>Mon outil principal est <span class="highlight">Debian 13</span>, que j'utilise pour le développement et la maintenance système.</p>
-    </section>
-
-    <!-- TRUCS SUR PC -->
-    <section id="pc" class="page">
-        <h2>Services Informatiques</h2>
-        <p>Je m'occupe de l'entretien et de l'amélioration de vos ordinateurs fixes :</p>
-        <ul>
-            <li><strong>Optimisation :</strong> Nettoyage complet et changement de pâte thermique.</li>
-            <li><strong>Système :</strong> Installation propre de Windows ou Linux (Debian).</li>
-            <li><strong>Hardware :</strong> Installation de nouveaux composants.</li>
-        </ul>
-
-        <div class="info-box">
-            <p>🚀 <strong>Upgrade SSD :</strong> Le prix dépend du stockage installé.</p>
-            <p>⚙️ <strong>Tarification :</strong> Les prix sont étudiés au cas par cas selon la complexité de l'intervention.</p>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="page">
-        <h2>Me contacter</h2>
-        <p>Pour un diagnostic ou un devis personnalisé :</p>
-        <p><strong>📧 Email :</strong> <span class="highlight">show.shadow.tech@proton.me</span></p>
-        <p>📍 Secteurs d'intervention : Toulouse Sud, Pouvourville, Rangueil, Ramonville.</p>
-    </section>
-
-    <script>
-        function ouvrirPage(idPage, bouton) {
-            let pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active-page'));
-
-            let boutons = document.querySelectorAll('.nav-btn');
-            boutons.forEach(b => b.classList.remove('active'));
-
-            document.getElementById(idPage).classList.add('active-page');
-            bouton.classList.add('active');
+        :root {
+            --brand-color: #0070f3;
         }
-    </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; max-width: 600px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; color: #333; }
-        header { text-align: center; margin-bottom: 30px; }
-        .logo { height: 70px; border-radius: 8px; }
+        .badge {
+            background-color: var(--brand-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 10px 0;
+            z-index: 100;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+        }
+        @media (prefers-color-scheme: dark) {
+            nav { background: #202b38; border-bottom: 1px solid #333; }
+        }
+        button.nav-btn {
+            background-color: transparent;
+            border: 1px solid var(--brand-color);
+            color: var(--brand-color);
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        button.nav-btn.active {
+            background-color: var(--brand-color);
+            color: white;
+        }
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .page.active {
+            display: block;
+        }
+        .contact-box {
+            border: 2px solid var(--brand-color);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: rgba(0, 112, 243, 0.05);
+            margin-top: 20px;
+        }
+        .highlight { color: var(--brand-color); font-weight: bold; }
+        .info-box { 
+            background: rgba(0, 112, 243, 0.05); 
+            border-left: 4px solid var(--brand-color); 
+            padding: 10px 15px; 
+            margin: 15px 0;
+        }
+        h2 { border-bottom: 2px solid var(--brand-color); display: inline-block; }
         
-        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
-        button { padding: 8px 16px; border: 1px solid #ccc; background: white; cursor: pointer; border-radius: 4px; transition: 0.3s; }
-        button.active { background: #0070f3; color: white; border-color: #0070f3; }
-
-        .page { display: none; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .active-page { display: block; }
-        
-        .highlight { color: #0070f3; font-weight: bold; }
-        .info-box { background: #eef6ff; border-left: 4px solid #0070f3; padding: 10px 15px; margin-top: 15px; font-style: italic; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .table-container { overflow-x: auto; }
     </style>
-    <title>Show Shadow - Toulouse</title>
 </head>
 <body>
 
     <header>
-        <img src="showshadow.png" alt="Logo Show Shadow" class="logo">
-        <h1>Show Shadow</h1>
+        <h1>🎮 Show Shadow <span class="badge">Toulouse</span></h1>
+        <nav id="main-nav">
+            <button class="nav-btn active" onclick="showPage('home')">Présentation</button>
+            <button class="nav-btn" onclick="showPage('tarifs')">Trucs sur PC</button>
+            <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+        </nav>
     </header>
 
-    <nav>
-        <button class="nav-btn active" onclick="ouvrirPage('presentation', this)">Présentation</button>
-        <button class="nav-btn" onclick="ouvrirPage('pc', this)">Trucs sur PC</button>
-        <button class="nav-btn" onclick="ouvrirPage('contact', this)">Contact</button>
-    </nav>
-
     <!-- PRÉSENTATION -->
-    <section id="presentation" class="page active-page">
-        <h2>À propos</h2>
-        <p>Je suis un étudiant passionné de tech basé à <span class="highlight">Pouvourville et Rangueil</span>.</p>
-        <p>Mon outil principal est <span class="highlight">Debian 13</span>, que j'utilise pour le développement et la maintenance système.</p>
+    <section id="home" class="page active">
+        <h2>👦 À propos</h2>
+        <p>L'expertise informatique par <span class="highlight">Elouen</span>, passionné et technicien Debian ! ⚡</p>
+        <p>Basé à <span class="highlight">Pouvourville</span>, je propose des solutions modernes pour vos machines.</p>
+        <blockquote>"Ne jetez plus vos vieux PC, transformons-les en machines de guerre."</blockquote>
     </section>
 
     <!-- TRUCS SUR PC -->
-    <section id="pc" class="page">
-        <h2>Services Informatiques</h2>
-        <p>Je m'occupe de l'entretien et de l'amélioration de vos ordinateurs fixes :</p>
-        <ul>
-            <li><strong>Optimisation :</strong> Nettoyage complet et changement de pâte thermique.</li>
-            <li><strong>Système :</strong> Installation propre de Windows ou Linux (Debian).</li>
-            <li><strong>Hardware :</strong> Installation de nouveaux composants.</li>
-        </ul>
+    <section id="tarifs" class="page">
+        <h2>🛠️ Maintenance & Services</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Boost SSD 🚀</strong></td><td>Installation et optimisation système.</td></tr>
+                    <tr><td><strong>Nettoyage 🧹</strong></td><td>Dépoussiérage et changement pâte thermique.</td></tr>
+                    <tr><td><strong>Système 🐧</strong></td><td>Installation Windows ou Linux (Debian).</td></tr>
+                    <tr><td><strong>Déblocage 🔑</strong></td><td>Accès session Windows en cas d'oubli.</td></tr>
+                </tbody>
+            </table>
+        </div>
 
         <div class="info-box">
-            <p>🚀 <strong>Upgrade SSD :</strong> Le prix dépend du stockage installé.</p>
-            <p>⚙️ <strong>Tarification :</strong> Les prix sont étudiés au cas par cas selon la complexité de l'intervention.</p>
+            <p>💾 <strong>Note sur les SSD :</strong> Le prix dépend de la capacité de stockage choisie.</p>
+            <p>⚙️ <strong>Tarification :</strong> Les prix sont étudiés <span class="highlight">au cas par cas</span> selon la complexité de l'intervention.</p>
         </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="page">
-        <h2>Me contacter</h2>
-        <p>Pour un diagnostic ou un devis personnalisé :</p>
-        <p><strong>📧 Email :</strong> <span class="highlight">show.shadow.tech@proton.me</span></p>
-        <p>📍 Secteurs d'intervention : Toulouse Sud, Pouvourville, Rangueil, Ramonville.</p>
+        <h2>🚀 Contact</h2>
+        <div class="contact-box">
+            <h3>Un projet ou un diagnostic ?</h3>
+            <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
+            <p>🏠 <em>Secteurs : Pouvourville, Rangueil, Ramonville, Castanet.</em></p>
+        </div>
     </section>
 
+    <hr>
+    <footer>
+        <p><small>© 2026 - Show Shadow | Elouen | Propulsé par <span class="highlight">Debian 13</span></small></p>
+    </footer>
+
     <script>
-        function ouvrirPage(idPage, bouton) {
-            let pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active-page'));
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
 
-            let boutons = document.querySelectorAll('.nav-btn');
-            boutons.forEach(b => b.classList.remove('active'));
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(idPage).classList.add('active-page');
-            bouton.classList.add('active');
+            document.getElementById(pageId).classList.add('active');
+
+            const activeBtn = Array.from(buttons).find(btn => 
+                btn.getAttribute('onclick').includes("'" + pageId + "'")
+            );
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            window.scrollTo(0,0);
         }
     </script>
 
