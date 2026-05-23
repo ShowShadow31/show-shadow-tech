@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Shadow - Maintenance éco-responsable</title>
+    
+    <title>Show Shadow | Réparation et Maintenance Informatique à Toulouse Sud</title>
+    <meta name="description" content="Show Shadow propose des services de réparation PC, nettoyage, montage sur mesure et installation Linux Debian à Toulouse Sud. Maintenance informatique éco-responsable et récupération de données.">
+    <link rel="canonical" href="https://showshadow31.github.io/show-shadow-tech/">
     
     <link rel="icon" type="image/png" href="showshadow.png">
 
@@ -15,222 +18,81 @@
             --brand-neon: #00ffd1;
             --bg-box: rgba(255, 255, 255, 0.03);
         }
-
-        body { 
-            max-width: 1000px; 
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            overflow-x: hidden; 
-        }
-
+        body { max-width: 1000px; margin: 0 auto; padding: 20px; text-align: center; overflow-x: hidden; }
         header { margin-bottom: 35px; }
-        
-        /* Style pour ton image de logo */
-        .logo-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 22px; /* Garde les bords arrondis stylés */
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 12px var(--brand));
-            transition: transform 0.4s ease;
-        }
-        .logo-img:hover {
-            transform: rotate(10deg) scale(1.05);
-        }
-
-        nav { 
-            display: flex; 
-            justify-content: center; 
-            gap: 12px; 
-            margin-bottom: 35px; 
-            padding: 10px 5px;
-            overflow-x: auto; 
-            white-space: nowrap; 
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        nav::-webkit-scrollbar { display: none; }
-
-        button.nav-btn {
-            flex: 0 0 auto;
-            background: transparent;
-            border: 2px solid var(--brand);
-            color: var(--brand);
-            cursor: pointer;
-            padding: 10px 22px;
-            font-weight: bold;
-            border-radius: 20px;
-            transition: 0.2s;
-        }
-        button.nav-btn:hover {
-            background: rgba(0, 112, 243, 0.1);
-        }
-        button.nav-btn.active { 
-            background: var(--brand); 
-            color: white; 
-            box-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
-        }
-
-        .page { 
-            display: none; 
-            text-align: left; 
-            background: var(--bg-box); 
-            padding: 35px; 
-            border-radius: 12px; 
-            border: 1px solid #333;
-            box-sizing: border-box;
-        }
-        .page.active { display: block; animation: fadeIn 0.35s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .table-container { width: 100%; overflow-x: auto; margin-top: 20px; border-radius: 6px; }
-        table { width: 100%; min-width: 750px; }
-        th { background: rgba(0, 112, 243, 0.2); }
-
-        .info-box { 
-            border-left: 5px solid var(--brand); 
-            padding: 15px; 
-            margin: 25px 0; 
-            background: rgba(0, 112, 243, 0.07); 
-            border-radius: 0 8px 8px 0;
-        }
-
+        .logo-img { width: 100px; height: 100px; object-fit: cover; border-radius: 22px; margin-bottom: 10px; filter: drop-shadow(0 0 12px var(--brand)); transition: transform 0.4s ease; }
+        .logo-img:hover { transform: rotate(10deg) scale(1.05); }
+        nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 35px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        button.nav-btn { background: transparent; border: 2px solid var(--brand); color: var(--brand); cursor: pointer; padding: 10px 22px; font-weight: bold; border-radius: 20px; transition: 0.2s; }
+        button.nav-btn.active { background: var(--brand); color: white; box-shadow: 0 0 15px rgba(0, 112, 243, 0.4); }
+        .page { display: none; text-align: left; background: var(--bg-box); padding: 35px; border-radius: 12px; border: 1px solid #333; }
+        .page.active { display: block; }
         .highlight { color: var(--brand-neon); font-weight: bold; }
         .brand-text { color: var(--brand); font-weight: bold; }
-        
-        .estimator-box {
-            background: rgba(0, 255, 209, 0.02);
-            border: 1px dashed var(--brand);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        .estimator-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            margin: 15px 0;
-        }
-        .estimator-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255,255,255,0.02);
-            padding: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .estimator-item input { margin: 0; }
-        .total-display {
-            font-size: 1.4em;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        footer { margin-top: 60px; padding-bottom: 20px; opacity: 0.6; font-size: 0.85em; }
-
-        @media (max-width: 800px) {
-            nav { justify-content: flex-start; }
-            body { padding: 10px; }
-            .page { padding: 20px; }
-        }
+        table { width: 100%; }
+        .estimator-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 15px 0; }
+        .estimator-item { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px; }
     </style>
 </head>
 <body>
 
     <header>
-        <img class="logo-img" src="showshadow.png" alt="Logo Show Shadow">
-        <h1>Show Shadow</h1>
+        <img class="logo-img" src="showshadow.png" alt="Logo Show Shadow - Expert réparation PC Toulouse">
+        <h1>Show Shadow - Maintenance et Réparation Informatique</h1>
         <nav>
             <button class="nav-btn active" onclick="showPage('home', this)">Présentation</button>
-            <button class="nav-btn" onclick="showPage('pc', this)">Services &amp; Tarifs</button>
-            <button class="nav-btn" onclick="showPage('recup', this)">Récupération</button>
+            <button class="nav-btn" onclick="showPage('pc', this)">Services & Tarifs</button>
+            <button class="nav-btn" onclick="showPage('recup', this)">Engagement Éco-Tech</button>
             <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
         </nav>
     </header>
 
     <section id="home" class="page active">
-        <h2>👦 Redonnez vie à votre technologie</h2>
-        <p>Passionné d'informatique et utilisateur quotidien de <span class="brand-text">Debian 13 (Trixie)</span> sous Linux (système d'exploitation), j'ai créé <strong>Show Shadow</strong> pour offrir une alternative durable à l'obsolescence programmée.</p>
-        <p>Mon approche est simple : <strong>réparer, nettoyer et optimiser plutôt que jeter</strong>. Que votre ordinateur soit lent, bruyant, plein de poussière ou complètement bloqué sous Windows, je suis là pour prolonger sa durée de vie grâce à des solutions fiables et du matériel sélectionné au pixel près.</p>
-        <p>Basé à <span class="highlight">Pouvourville (31)</span>, je propose des interventions de proximité pour le hardware et des services numériques à distance pour vous simplifier la tech.</p>
+        <h2><strong>Réparation et Optimisation PC</strong> à Toulouse Sud</h2>
+        <p>Passionné d'informatique et utilisateur quotidien de <strong>Debian 13 (Trixie)</strong>, j'ai créé <strong>Show Shadow</strong> pour offrir une alternative durable à l'obsolescence programmée.</p>
+        <p>Mon approche : <strong>réparer, nettoyer et optimiser</strong> votre matériel. Que votre ordinateur soit lent, bruyant ou nécessite une réinstallation propre, je suis là pour prolonger sa durée de vie.</p>
+        <p>Interventions de proximité sur le secteur de <strong>Toulouse Sud</strong> et services numériques à distance.</p>
     </section>
 
     <section id="pc" class="page">
-        <h2>🛠️ Services &amp; Expertise</h2>
-        <p>Du simple dépoussiérage au sauvetage de système d'exploitation en détresse, voici mon catalogue d'interventions :</p>
+        <h2>🛠️ Services de dépannage informatique</h2>
+        <table>
+            <thead><tr><th>Catégorie</th><th>Intervention</th><th>Dès</th></tr></thead>
+            <tbody>
+                <tr><td>Entretien</td><td>Dépoussiérage + Pâte thermique</td><td>15€</td></tr>
+                <tr><td>Hardware</td><td>Montage PC sur mesure</td><td>30€</td></tr>
+                <tr><td>Vitesse</td><td>Installation SSD + Migration</td><td>40€</td></tr>
+                <tr><td>Système</td><td>Installation Linux Debian / Windows</td><td>25€</td></tr>
+                <tr><td>Web</td><td>Création site vitrine HTML/CSS</td><td>60€</td></tr>
+            </tbody>
+        </table>
         
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Catégorie</th>
-                        <th>Intervention</th>
-                        <th>Tarif estimatif</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>Entretien 🧹</strong></td><td><strong>Deep Clean :</strong> Dépoussiérage interne complet à l'air comprimé + Remplacement pâte thermique</td><td>Dès 15€</td></tr>
-                    <tr><td><strong>Hardware 🖥️</strong></td><td>Montage PC complet sur mesure (Gaming, Bureau, Home Server Linux)</td><td>Dès 30€</td></tr>
-                    <tr><td><strong>Vitesse 🚀</strong></td><td>Installation SSD ultra-rapide (KingSpec/Crucial) + Migration complète des données</td><td>Dès 40€*</td></tr>
-                    <tr><td><strong>Système 🐧</strong></td><td>Installation / Réinstallation propre Linux Debian ou Windows</td><td>Dès 25€</td></tr>
-                    <tr><td><strong>Déblocage 🔑</strong></td><td>Réinitialisation ou saut de mot de passe de session Windows bloquée</td><td>5€</td></tr>
-                    <tr><td><strong>Diagnostic 🔍</strong></td><td>Recherche de panne matérielle / Aide et conseil pour l'achat de composants</td><td>Dès 15€</td></tr>
-                    <tr><td><strong>Sauvegarde 💾</strong></td><td>Récupération et extraction de fichiers sur disque dur fonctionnel mais inaccessible</td><td>Dès 20€</td></tr>
-                    <tr><td><strong>Web 🌐</strong></td><td>Création de site vitrine personnalisé en HTML pur / CSS léger ou modification de site déjà existant</td><td>Dès 60€</td></tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="info-box">
-            <p>💾 <strong>Note composants :</strong> Le prix des pièces physiques (SSD, barrettes de RAM, etc.) dépend du marché et reste à la charge du client.</p>
-            <p>⚙️ <strong>Précision importante :</strong> Chaque machine est unique. Les prix affichés sont des bases indicatives qui seront adaptées selon la complexité réelle de la panne.</p>
-        </div>
-
         <div class="estimator-box">
-            <h3>🧮 Simulateur de Devis Rapide</h3>
-            <p>Cochez les interventions nécessaires pour simuler le tarif de base (hors pièces de rechange) :</p>
+            <h3>🧮 Simulateur de Devis</h3>
             <div class="estimator-grid">
-                <label class="estimator-item"><input type="checkbox" value="15" onchange="calculateTotal()"> Nettoyage &amp; Pâte thermique (Dès 15€)</label>
-                <label class="estimator-item"><input type="checkbox" value="30" onchange="calculateTotal()"> Montage PC sur mesure (Dès 30€)</label>
-                <label class="estimator-item"><input type="checkbox" value="40" onchange="calculateTotal()"> Pack SSD + Migration (Dès 40€)</label>
-                <label class="estimator-item"><input type="checkbox" value="25" onchange="calculateTotal()"> Réinstallation OS (Dès 25€)</label>
-                <label class="estimator-item"><input type="checkbox" value="5" onchange="calculateTotal()"> Reset mot de passe Windows (5€)</label>
-                <label class="estimator-item"><input type="checkbox" value="15" onchange="calculateTotal()"> Diagnostic / Conseil d'achat (Dès 15€)</label>
-                <label class="estimator-item"><input type="checkbox" value="20" onchange="calculateTotal()"> Récupération de données (Dès 20€)</label>
+                <label class="estimator-item"><input type="checkbox" value="15" onchange="calculateTotal()"> Nettoyage (15€)</label>
+                <label class="estimator-item"><input type="checkbox" value="30" onchange="calculateTotal()"> Montage PC (30€)</label>
+                <label class="estimator-item"><input type="checkbox" value="40" onchange="calculateTotal()"> Pack SSD (40€)</label>
+                <label class="estimator-item"><input type="checkbox" value="25" onchange="calculateTotal()"> Installation OS (25€)</label>
             </div>
-            <div class="total-display">
-                Estimation minimale de la main d'œuvre : <span id="total-price" class="highlight">0€</span>
-            </div>
+            <p>Estimation main d'œuvre : <span id="total-price" class="highlight">0€</span></p>
         </div>
     </section>
 
     <section id="recup" class="page">
         <h2>♻️ Engagement Éco-Tech</h2>
-        <p>Ne laissez plus vos anciens ordinateurs mourir au fond d'un placard ou polluer les déchetteries.</p>
-        <div class="info-box">
-            <p><strong>Je récupère gratuitement</strong> vos anciens PC portables, tours fixes ou composants (même hors-service) pour leur donner une seconde vie.</p>
-        </div>
-        <ul>
-            <li><strong>Reconditionnement :</strong> Les pièces en bon état sont testées et nettoyées pour réassembler des machines fonctionnelles à destination de petits budgets.</li>
-            <li><strong>Recyclage responsable :</strong> Les composants HS sont triés de manière sélective pour limiter au maximum leur empreinte environnementale.</li>
-            <li><strong>Sécurité des données 🔒 :</strong> Un effacement complet et sécurisé de bas niveau est effectué sur chaque disque dur reçu pour garantir la destruction totale de vos données privées avant réutilisation.</li>
-        </ul>
+        <p>Je récupère vos anciens PC portables, tours fixes ou composants pour leur donner une seconde vie ou les recycler de manière sélective. <strong>Sécurité des données garantie</strong> par effacement de bas niveau.</p>
     </section>
 
     <section id="contact" class="page">
-        <h2>✉️ Contactez-moi</h2>
-        <p>Une panne ? Une tour à dépoussiérer avant la surchauffe ? Un projet de PC sur mesure ? Écrivez-moi directement.</p>
-        <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-        <p>🏠 <strong>Zone d'intervention physique :</strong> Toulouse Sud (Pouvourville, Rangueil, Ramonville).</p>
-        <p>💻 <strong>Services numériques &amp; Web :</strong> Prise en charge à distance sans limite géographique.</p>
+        <h2>✉️ Contactez Show Shadow</h2>
+        <p>Pour toute demande d'intervention, écrivez-moi par email :</p>
+        <p><strong>Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
+        <p><em>Services disponibles sur Toulouse Sud et à distance.</em></p>
     </section>
 
     <footer>
-        <p>© 2026 - Show Shadow | Maintenance éco-responsable | Propulsé fièrement sous environnement <span class="highlight">Debian</span></p>
+        <p>© 2026 - Show Shadow | Maintenance Informatique Éco-responsable | Debian Tech</p>
     </footer>
 
     <script>
@@ -239,14 +101,10 @@
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             btn.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function calculateTotal() {
             let total = 0;
-            document.querySelectorAll('.estimator-grid input:checked').forEach(checkbox => {
-                total += parseInt(checkbox.value);
-            });
+            document.querySelectorAll('input:checked').forEach(c => total += parseInt(c.value));
             document.getElementById('total-price').innerText = total > 0 ? 'Dès ' + total + '€' : '0€';
         }
     </script>
