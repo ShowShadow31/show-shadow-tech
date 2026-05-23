@@ -3,27 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Shadow - Maintenance &amp; Solutions Tech</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f141c'/><path d='M30 35 C 30 25, 70 25, 70 40 C 70 55, 30 45, 30 60 C 30 75, 70 75, 70 65' stroke='%230070f3' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M30 35 C 30 25, 70 25, 70 40' stroke='%2300ffd1' stroke-width='4' stroke-linecap='round' fill='none'/><circle cx='30' cy='35' r='6' fill='%2300ffd1'/><circle cx='70' cy='65' r='6' fill='%230070f3'/><path d='M45 50 L 55 50' stroke='%2300ffd1' stroke-width='3'/></svg>">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <title>Show Shadow - Maintenance & Solutions Tech</title>
+
     <style>
-        :root { --brand: #0070f3; }
+        :root { 
+            --brand: #0070f3; 
+            --brand-neon: #00ffd1;
+            --bg-box: rgba(255, 255, 255, 0.03);
+        }
 
         body { 
-            max-width: 1200px; 
+            max-width: 1000px; 
             margin: 0 auto;
             padding: 20px;
             text-align: center;
             overflow-x: hidden; 
         }
 
-        header { margin-bottom: 30px; }
-        .logo { max-width: 150px; border-radius: 12px; margin-bottom: 10px; }
+        header { margin-bottom: 35px; }
+        
+        .logo-svg {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 12px var(--brand));
+            transition: transform 0.4s ease;
+        }
+        .logo-svg:hover {
+            transform: rotate(10deg) scale(1.05);
+        }
 
-        /* Navigation coulissante mobile */
         nav { 
             display: flex; 
             justify-content: center; 
-            gap: 10px; 
+            gap: 12px; 
             margin-bottom: 35px; 
             padding: 10px 5px;
             overflow-x: auto; 
@@ -39,37 +56,77 @@
             border: 2px solid var(--brand);
             color: var(--brand);
             cursor: pointer;
-            padding: 10px 20px;
+            padding: 10px 22px;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 20px;
             transition: 0.2s;
         }
-        button.nav-btn.active { background: var(--brand); color: white; }
+        button.nav-btn:hover {
+            background: rgba(0, 112, 243, 0.1);
+        }
+        button.nav-btn.active { 
+            background: var(--brand); 
+            color: white; 
+            box-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
+        }
 
         .page { 
             display: none; 
             text-align: left; 
-            background: rgba(255,255,255,0.05); 
-            padding: 30px; 
-            border-radius: 15px; 
-            border: 1px solid #444;
+            background: var(--bg-box); 
+            padding: 35px; 
+            border-radius: 12px; 
+            border: 1px solid #333;
             box-sizing: border-box;
         }
-        .page.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .page.active { display: block; animation: fadeIn 0.35s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .table-container { width: 100%; overflow-x: auto; margin-top: 20px; }
-        table { width: 100%; min-width: 700px; }
+        .table-container { width: 100%; overflow-x: auto; margin-top: 20px; border-radius: 6px; }
+        table { width: 100%; min-width: 750px; }
+        th { background: rgba(0, 112, 243, 0.2); }
 
         .info-box { 
             border-left: 5px solid var(--brand); 
             padding: 15px; 
             margin: 25px 0; 
-            background: rgba(0, 112, 243, 0.12); 
-            border-radius: 0 10px 10px 0;
+            background: rgba(0, 112, 243, 0.07); 
+            border-radius: 0 8px 8px 0;
         }
 
-        .highlight { color: var(--brand); font-weight: bold; }
+        .highlight { color: var(--brand-neon); font-weight: bold; }
+        .brand-text { color: var(--brand); font-weight: bold; }
+        
+        .estimator-box {
+            background: rgba(0, 255, 209, 0.02);
+            border: 1px dashed var(--brand);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .estimator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .estimator-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.02);
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .estimator-item input { margin: 0; }
+        .total-display {
+            font-size: 1.4em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15px;
+        }
+
         footer { margin-top: 60px; padding-bottom: 20px; opacity: 0.6; font-size: 0.85em; }
 
         @media (max-width: 800px) {
@@ -82,79 +139,101 @@
 <body>
 
     <header>
-        <img src="showshadow.png" alt="Logo Show Shadow" class="logo">
+        <svg class="logo-svg" viewBox="0 0 100 100">
+            <rect width='100' height='100' rx='22' fill='#0f141c'/>
+            <path d='M30 35 C 30 25, 70 25, 70 40 C 70 55, 30 45, 30 60 C 30 75, 70 75, 70 65' stroke='#0070f3' stroke-width='8' stroke-linecap='round' fill='none'/>
+            <path d='M30 35 C 30 25, 70 25, 70 40' stroke='#00ffd1' stroke-width='4' stroke-linecap='round' fill='none'/><circle cx='30' cy='35' r='6' fill='#00ffd1'/>
+            <circle cx='70' cy='65' r='6' fill='#0070f3'/>
+            <path d='M45 50 L 55 50' stroke='#00ffd1' stroke-width='3'/>
+        </svg>
         <h1>Show Shadow</h1>
         <nav>
             <button class="nav-btn active" onclick="showPage('home', this)">Présentation</button>
-            <button class="nav-btn" onclick="showPage('pc', this)">Maintenance PC</button>
+            <button class="nav-btn" onclick="showPage('pc', this)">Services &amp; Tarifs</button>
             <button class="nav-btn" onclick="showPage('recup', this)">Récupération</button>
             <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
         </nav>
     </header>
 
-    <!-- PRÉSENTATION AMÉLIORÉE -->
     <section id="home" class="page active">
         <h2>👦 Redonnez vie à votre technologie</h2>
-        <p>Passionné d'informatique et utilisateur quotidien de <span class="highlight">Debian 13</span> (système d'exploitation) sous Linux, j'ai créé <strong>Show Shadow</strong> pour offrir une alternative durable à la consommation de masse.</p>
-        <p>Mon approche est simple : <strong>réparer plutôt que jeter</strong>. Que votre ordinateur soit lent, bruyant ou capricieux, j'utilise mon expertise pour optimiser ses performances et prolonger sa durée de vie grâce à des solutions Open Source et du matériel fiable.</p>
-        <p>Basé à <span class="highlight">Pouvourville (31)</span>, je propose des interventions de proximité et des services numériques à distance pour vous accompagner au quotidien.</p>
+        <p>Passionné d'informatique et utilisateur quotidien de <span class="brand-text">Debian 13 (Trixie)</span> sous Linux (système d'exploitation), j'ai créé <strong>Show Shadow</strong> pour offrir une alternative durable à l'obsolescence programmée.</p>
+        <p>Mon approche est simple : <strong>réparer, nettoyer et optimiser plutôt que jeter</strong>. Que votre ordinateur soit lent, bruyant, plein de poussière ou complètement bloqué sous Windows, j'ici pour prolonger sa durée de vie grâce à des solutions fiables et du matériel sélectionné au pixel près.</p>
+        <p>Basé à <span class="highlight">Pouvourville (31)</span>, je propose des interventions de proximité pour le hardware et des services numériques à distance pour vous simplifier la tech.</p>
     </section>
 
-    <!-- MAINTENANCE PC ÉLARGIE -->
     <section id="pc" class="page">
-        <h2>🛠️ Services & Expertise</h2>
+        <h2>🛠️ Services &amp; Expertise</h2>
+        <p>Du simple dépoussiérage au sauvetage de système d'exploitation en détresse, voici mon catalogue d'interventions :</p>
+        
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Catégorie</th>
                         <th>Intervention</th>
-                        <th>Tarif</th>
+                        <th>Tarif estimatif</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>Hardware 🖥️</strong></td><td>Montage PC sur mesure (Gaming, Bureau, Home Server)</td><td>Dès 30€</td></tr>
-                    <tr><td><strong>Vitesse 🚀</strong></td><td>Installation SSD KingSpec + Migration complète des données</td><td>Selon PC*</td></tr>
-                    <tr><td><strong>Système 🐧</strong></td><td>Installation/Réinstallation propre Windows ou Linux Debian</td><td>Étudié*</td></tr>
-                    <tr><td><strong>Entretien 🧹</strong></td><td>Nettoyage interne complet & Changement pâte thermique</td><td>Dès 15€</td></tr>
-                    <tr><td><strong>Web 🌐</strong></td><td>Création de site vitrine personnalisé (à distance)</td><td>Dès 60€</td></tr>
-                    <tr><td><strong>Sécurité 🔑</strong></td><td>Réinitialisation de mot de passe session Windows</td><td>5€</td></tr>
-                    <tr><td><strong>Diagnostic 🔍</strong></td><td>Aide au diagnostic panne et conseil d'achat composants</td><td>Dès 15€</td></tr>
-                    <tr><td><strong>Sauvegarde 💾</strong></td><td>Récupération de fichiers sur disque dur fonctionnel</td><td>Dès 20€</td></tr>
+                    <tr><td><strong>Entretien 🧹</strong></td><td><strong>Deep Clean :</strong> Dépoussiérage interne complet à l'air comprimé + Remplacement pâte thermique</td><td>Dès 15€</td></tr>
+                    <tr><td><strong>Hardware 🖥️</strong></td><td>Montage PC complet sur mesure (Gaming, Bureau, Home Server Linux)</td><td>Dès 30€</td></tr>
+                    <tr><td><strong>Vitesse 🚀</strong></td><td>Installation SSD ultra-rapide (KingSpec/Crucial) + Migration complète des données</td><td>Dès 40€*</td></tr>
+                    <tr><td><strong>Système 🐧</strong></td><td>Installation / Réinstallation propre Linux Debian ou Windows</td><td>Dès 25€</td></tr>
+                    <tr><td><strong>Déblocage 🔑</strong></td><td>Réinitialisation ou saut de mot de passe de session Windows bloquée</td><td>5€</td></tr>
+                    <tr><td><strong>Diagnostic 🔍</strong></td><td>Recherche de panne matérielle / Aide et conseil pour l'achat de composants</td><td>Dès 15€</td></tr>
+                    <tr><td><strong>Sauvegarde 💾</strong></td><td>Récupération et extraction de fichiers sur disque dur fonctionnel mais inaccessible</td><td>Dès 20€</td></tr>
+                    <tr><td><strong>Web 🌐</strong></td><td>Création de site vitrine personnalisé en HTML pur / CSS léger ou modification de site déjà existant</td><td>Dès 60€</td></tr>
                 </tbody>
             </table>
         </div>
+        
         <div class="info-box">
-            <p>💾 <strong>Note Matériel :</strong> Le prix des composants (SSD, RAM) dépend du cours du marché et de la capacité choisie.</p>
-            <p>⚙️ <strong>Précision :</strong> Chaque intervention est unique. Mes tarifs sont <span class="highlight">étudiés au cas par cas</span> pour être les plus justes possibles.</p>
+            <p>💾 <strong>Note composants :</strong> Le prix des pièces physiques (SSD, barrettes de RAM, etc.) dépend du marché et reste à la charge du client.</p>
+            <p>⚙️ <strong>Précision importante :</strong> Chaque machine est unique. Les prix affichés sont des bases indicatives qui seront adaptées selon la complexité réelle de la panne.</p>
+        </div>
+
+        <div class="estimator-box">
+            <h3>🧮 Simulateur de Devis Rapide</h3>
+            <p>Cochez les interventions nécessaires pour simuler le tarif de base (hors pièces de rechange) :</p>
+            <div class="estimator-grid">
+                <label class="estimator-item"><input type="checkbox" value="15" onchange="calculateTotal()"> Nettoyage &amp; Pâte thermique (Dès 15€)</label>
+                <label class="estimator-item"><input type="checkbox" value="30" onchange="calculateTotal()"> Montage PC sur mesure (Dès 30€)</label>
+                <label class="estimator-item"><input type="checkbox" value="40" onchange="calculateTotal()"> Pack SSD + Migration (Dès 40€)</label>
+                <label class="estimator-item"><input type="checkbox" value="25" onchange="calculateTotal()"> Réinstallation OS (Dès 25€)</label>
+                <label class="estimator-item"><input type="checkbox" value="5" onchange="calculateTotal()"> Reset mot de passe Windows (Dès 5€)</label>
+                <label class="estimator-item"><input type="checkbox" value="15" onchange="calculateTotal()"> Diagnostic / Conseil d'achat (Dès 15€)</label>
+                <label class="estimator-item"><input type="checkbox" value="20" onchange="calculateTotal()"> Récupération de données (Dès 20€)</label>
+            </div>
+            <div class="total-display">
+                Estimation minimale de la main d'œuvre : <span id="total-price" class="highlight">0€</span>
+            </div>
         </div>
     </section>
 
-    <!-- RÉCUPÉRATION -->
     <section id="recup" class="page">
         <h2>♻️ Engagement Éco-Tech</h2>
-        <p>Ne laissez plus vos anciens appareils dormir dans vos tiroirs ou finir à la poubelle.</p>
+        <p>Ne laissez plus vos anciens ordinateurs mourir au fond d'un placard ou polluer les déchetteries.</p>
         <div class="info-box">
-            <p><strong>Je récupère gratuitement</strong> vos anciens ordinateurs et composants pour leur donner une seconde vie ou assurer leur recyclage.</p>
+            <p><strong>Je récupère gratuitement</strong> vos anciens PC portables, tours fixes ou composants (même hors-service) pour leur donner une seconde vie.</p>
         </div>
         <ul>
-            <li><strong>Reconditionnement :</strong> Les pièces encore valides servent à réparer des machines pour des budgets serrés.</li>
-            <li><strong>Recyclage :</strong> Les composants HS sont triés pour réduire l'impact environnemental.</li>
-            <li><strong>Confidentialité :</strong> Je garantis l'effacement sécurisé de vos données sur tout disque récupéré.</li>
+            <li><strong>Reconditionnement :</strong> Les pièces en bon état sont testées et nettoyées pour réassembler des machines fonctionnelles à destination de petits budgets.</li>
+            <li><strong>Recyclage responsable :</strong> Les composants HS sont triés de manière sélective pour limiter au maximum leur empreinte environnementale.</li>
+            <li><strong>Sécurité des données 🔒 :</strong> Un effacement complet et sécurisé de bas niveau est effectué sur chaque disque dur reçu pour garantir la destruction totale de vos données privées avant réutilisation.</li>
         </ul>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="page">
         <h2>✉️ Contactez-moi</h2>
-        <p>Un projet ? Une panne ? Je réponds à vos demandes rapidement.</p>
+        <p>Une panne ? Une tour à dépoussiérer avant la surchauffe ? Un projet de PC sur mesure ? Écrivez-moi directement.</p>
         <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-        <p>🏠 <strong>Zones d'intervention :</strong> Toulouse Sud (Pouvourville, Rangueil, Ramonville, Castanet).</p>
-        <p>💻 <strong>Services à distance :</strong> Disponibles sans limite géographique.</p>
+        <p>🏠 <strong>Zone d'intervention physique :</strong> Toulouse Sud (Pouvourville, Rangueil, Ramonville).</p>
+        <p>💻 <strong>Services numériques &amp; Web :</strong> Prise en charge à distance sans limite géographique.</p>
     </section>
 
     <footer>
-        <p>© 2026 - Show Shadow | Passionné Tech | Propulsé par <span class="highlight">Debian</span></p>
+        <p>© 2026 - Show Shadow | Maintenance éco-responsable | Propulsé fièrement sous environnement <span class="highlight">Debian</span></p>
     </footer>
 
     <script>
@@ -164,6 +243,15 @@
             document.getElementById(pageId).classList.add('active');
             btn.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            document.querySelectorAll('.estimator-grid input:checked').forEach(checkbox => {
+                total += parseInt(checkbox.value);
+            });
+            // On affiche un "Dès X€" aussi dans le total dynamique si l'utilisateur coche des éléments !
+            document.getElementById('total-price').innerText = total > 0 ? 'Dès ' + total + '€' : '0€';
         }
     </script>
 </body>
