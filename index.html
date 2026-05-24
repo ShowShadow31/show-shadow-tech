@@ -15,18 +15,22 @@
     <style>
         :root { --brand: #0070f3; --bg-box: rgba(255, 255, 255, 0.03); }
         body { max-width: 900px; margin: 0 auto; padding: 20px; text-align: center; }
-        header { margin-bottom: 40px; }
-        .logo-img { width: 120px; border-radius: 20px; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--brand)); }
+        header { margin-bottom: 35px; }
+        .logo-img { width: 100px; border-radius: 20px; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--brand)); }
         
-        .page { text-align: left; background: var(--bg-box); padding: 30px; border-radius: 12px; border: 1px solid #333; margin-bottom: 20px; }
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        button.nav-btn { background: transparent; border: 2px solid var(--brand); color: var(--brand); padding: 8px 16px; cursor: pointer; border-radius: 20px; font-weight: bold; }
+        button.nav-btn.active { background: var(--brand); color: white; }
+
+        .page { display: none; text-align: left; background: var(--bg-box); padding: 30px; border-radius: 12px; border: 1px solid #333; }
+        .page.active { display: block; }
+        
         h2 { color: var(--brand); margin-top: 0; }
         .price-tag { font-weight: bold; color: var(--brand); }
         .promo { background: rgba(0, 112, 243, 0.1); padding: 10px; border-left: 4px solid var(--brand); margin: 15px 0; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th { background: rgba(0, 112, 243, 0.2); text-align: left; }
         td { padding: 10px; border-bottom: 1px solid #333; }
-        
         footer { margin-top: 50px; opacity: 0.6; font-size: 0.9em; }
     </style>
 </head>
@@ -35,53 +39,60 @@
     <header>
         <img class="logo-img" src="showshadow.png" alt="Logo Show Shadow">
         <h1>Show Shadow</h1>
-        <p>Expertise technique & Durabilité informatique</p>
+        <nav>
+            <button class="nav-btn active" onclick="showPage('home', this)">Présentation</button>
+            <button class="nav-btn" onclick="showPage('services', this)">Services & Tarifs</button>
+            <button class="nav-btn" onclick="showPage('recup', this)">Éco-Tech</button>
+            <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
+        </nav>
     </header>
 
-    <section class="page">
+    <section id="home" class="page active">
         <h2>👦 À propos</h2>
         <p>Passionné d'informatique et utilisateur quotidien de <strong>Debian 13 (Trixie)</strong>, j'ai créé <strong>Show Shadow</strong> pour offrir une alternative durable à l'obsolescence programmée. J'interviens sur <strong>Toulouse Sud</strong> pour prolonger la vie de vos machines.</p>
     </section>
 
-    <section class="page">
+    <section id="services" class="page">
         <h2>🛠️ Interventions & Tarifs</h2>
-        <p>Chaque machine est unique. Voici mes tarifs de base (hors pièces de rechange) :</p>
-        
         <table>
-            <thead>
-                <tr><th>Service</th><th>Tarif</th></tr>
-            </thead>
+            <thead><tr><th>Service</th><th>Tarif</th></tr></thead>
             <tbody>
-                <tr><td>Conseil achat (configuration adaptée)</td><td class="price-tag">10€</td></tr>
+                <tr><td>Conseil achat (configuration)</td><td class="price-tag">10€</td></tr>
                 <tr><td>Diagnostic complet</td><td class="price-tag">15€ (remboursé si réparation)</td></tr>
                 <tr><td>Nettoyage profond & Pâte thermique</td><td class="price-tag">15€</td></tr>
-                <tr><td>Réinstallation OS (Debian / Linux Mint / Windows 11)</td><td class="price-tag">25€</td></tr>
+                <tr><td>Réinstallation OS (Debian / Windows)</td><td class="price-tag">25€</td></tr>
                 <tr><td>Montage PC sur mesure</td><td class="price-tag">Dès 30€</td></tr>
                 <tr><td>Installation SSD + Migration données</td><td class="price-tag">Dès 40€</td></tr>
                 <tr><td>Récupération de données</td><td class="price-tag">Dès 20€</td></tr>
                 <tr><td>Création site vitrine HTML/CSS</td><td class="price-tag">Dès 80€</td></tr>
             </tbody>
         </table>
-        
-        <div class="promo">
-            💡 <strong>Note :</strong> Le diagnostic est <strong>offert</strong> si vous validez la réparation associée.
-        </div>
+        <div class="promo">💡 <strong>Note :</strong> Le diagnostic est <strong>offert</strong> si vous validez la réparation associée.</div>
+        <div class="promo">💡 <strong>Note :</strong> Les prix sont décidé <strong>au cas par cas</strong> selon la complexité de l'intervention.</div>
     </section>
 
-    <section class="page">
+    <section id="recup" class="page">
         <h2>♻️ Engagement Éco-Tech</h2>
         <p>Je récupère vos anciens PC portables, tours fixes ou composants pour leur donner une seconde vie. <strong>Sécurité des données garantie</strong> par effacement de bas niveau avant toute réutilisation.</p>
     </section>
 
-    <section class="page">
+    <section id="contact" class="page">
         <h2>✉️ Contact</h2>
         <p><strong>Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-        <p>Zone d'intervention : Toulouse Sud (Pouvourville,Rangueil, Ramonville).</p>
+        <p>Zone d'intervention : Toulouse Sud.</p>
     </section>
 
     <footer>
         <p>© 2026 - Show Shadow | Maintenance éco-responsable | Propulsé sous Debian</p>
     </footer>
 
+    <script>
+        function showPage(pageId, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
 </body>
 </html>
