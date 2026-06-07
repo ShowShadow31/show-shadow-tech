@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Show Shadow | Dépannage, Conseil et Maintenance Informatique à Toulouse Sud</title>
-    <meta name="description" content="Show Shadow : Dépannage PC, diagnostic remboursé, conseil achat (10€), montage sur mesure et maintenance informatique à Toulouse Sud.">
+    <meta name="description" content="Show Shadow : Dépannage PC à Toulouse Sud et création d'Agents IA (n8n) à distance pour e-commerçants (réduction des coûts de personnel).">
     <link rel="canonical" href="https://showshadow31.github.io/show-shadow-tech/">
     
     <link rel="icon" type="image/png" href="showshadow.png">
@@ -18,7 +18,7 @@
         header { margin-bottom: 35px; }
         .logo-img { width: 100px; border-radius: 20px; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--brand)); }
         
-        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
         button.nav-btn { background: transparent; border: 2px solid var(--brand); color: var(--brand); padding: 8px 16px; cursor: pointer; border-radius: 20px; font-weight: bold; }
         button.nav-btn.active { background: var(--brand); color: white; }
 
@@ -42,6 +42,7 @@
         <nav>
             <button class="nav-btn active" onclick="showPage('home', this)">Présentation</button>
             <button class="nav-btn" onclick="showPage('services', this)">Services & Tarifs</button>
+            <button class="nav-btn" onclick="showPage('agent-ia', this)">Agent IA (E-commerce)</button>
             <button class="nav-btn" onclick="showPage('recup', this)">Éco-Tech</button>
             <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
         </nav>
@@ -49,11 +50,11 @@
 
     <section id="home" class="page active">
         <h2>👦 À propos</h2>
-        <p>Passionné d'informatique et utilisateur quotidien de <strong>Debian 13 (Trixie)</strong>, j'ai créé <strong>Show Shadow</strong> pour offrir une alternative durable à l'obsolescence programmée. J'interviens sur <strong>Toulouse Sud</strong> pour prolonger la vie de vos machines.</p>
+        <p>Passionné d'informatique et utilisateur quotidien de <strong>Debian 13 (Trixie)</strong>, j'ai créé <strong>Show Shadow</strong> pour offrir une alternative durable à l'obsolescence programmée. J'interviens physiquement sur <strong>Toulouse Sud</strong> pour prolonger la vie de vos machines, et <strong>à distance dans toute la francophonie</strong> pour l'automatisation IA.</p>
     </section>
 
     <section id="services" class="page">
-        <h2>🛠️ Interventions & Tarifs</h2>
+        <h2>🛠️ Interventions Physiques (Toulouse Sud)</h2>
         <table>
             <thead><tr><th>Service</th><th>Tarif</th></tr></thead>
             <tbody>
@@ -64,26 +65,46 @@
                 <tr><td>Montage PC sur mesure</td><td class="price-tag">Dès 30€</td></tr>
                 <tr><td>Installation SSD + Migration données</td><td class="price-tag">Dès 40€</td></tr>
                 <tr><td>Récupération de données</td><td class="price-tag">Dès 20€</td></tr>
-                <tr><td>Création site vitrine HTML/CSS</td><td class="price-tag">Dès 80€</td></tr>
+                <tr><td>Création site vitrine HTML/CSS</td><td class="price-tag">Dès 80€ (à distance possible)</td></tr>
             </tbody>
         </table>
         <div class="promo">💡 <strong>Note :</strong> Le diagnostic est <strong>offert</strong> si vous validez la réparation associée.</div>
-        <div class="promo">💡 <strong>Note :</strong> Les prix sont décidé <strong>au cas par cas</strong> selon la complexité de l'intervention.</div>
+        <div class="promo">💡 <strong>Note :</strong> Les prix sont décidés <strong>au cas par cas</strong> selon la complexité de l'intervention.</div>
+    </section>
+
+    <section id="agent-ia" class="page">
+        <h2>🤖 Agent IA pour E-commerçants (100% à distance)</h2>
+        <p>Un support client 24h/24 et 7j/7 sans embaucher. Un <strong>Agent IA sur mesure</strong> permet d'économiser jusqu'à <strong>40 000€ de frais de personnel par an</strong> (équivalent d'un salaire chargé), tout en répondant instantanément aux questions de vos clients (suivi de commande, détails produits, FAQ).</p>
+        <ul>
+            <li><strong>Service 100% à distance :</strong> Accessible où que se trouve votre entreprise en France ou à l'international.</li>
+            <li><strong>Workflow Spécialisé :</strong> Création d'un système de logique intelligent via n8n.</li>
+            <li><strong>Hébergement Performant :</strong> Déployé sur un serveur <strong>Hostinger</strong> pour une disponibilité absolue.</li>
+            <li><strong>Expertise de vos données :</strong> L'IA ingère tout le contenu de votre boutique pour agir comme un vrai vendeur qualifié.</li>
+        </ul>
+        <table>
+            <thead><tr><th>Prestation</th><th>Tarif</th></tr></thead>
+            <tbody>
+                <tr><td>Création de l'Agent IA & Ingestion des données</td><td class="price-tag">Sur devis (Frais uniques)*</td></tr>
+                <tr><td>Maintenance n8n & Hébergement Hostinger</td><td class="price-tag">Forfait mensuel**</td></tr>
+            </tbody>
+        </table>
+        <div class="promo">💡 <strong>*Frais de création :</strong> Le coût initial dépend de la complexité et de la taille de la <strong>base de données</strong> que l'IA devra assimiler.</div>
+        <div class="promo">💡 <strong>**Forfait mensuel :</strong> Fonctionne par abonnement pour couvrir les frais de serveur (Hostinger) et garantir l'entretien du workflow. <a href="#contact" onclick="showPage('contact', document.querySelectorAll('.nav-btn')[4])" style="color: var(--brand); font-weight: bold;">Contactez-moi</a> pour calculer votre rentabilité !</div>
     </section>
 
     <section id="recup" class="page">
         <h2>♻️ Engagement Éco-Tech</h2>
-        <p>Je récupère vos anciens PC portables, tours fixes ou composants pour leur donner une seconde vie. <strong>Sécurité des données garantie</strong> par effacement avancé (réecriture entière du disque dur) avant toute réutilisation.</p>
+        <p>Je récupère vos anciens PC portables, tours fixes ou composants pour leur donner une seconde vie. <strong>Sécurité des données garantie</strong> par effacement avancé (réécriture entière du disque dur) avant toute réutilisation.</p>
     </section>
 
     <section id="contact" class="page">
         <h2>✉️ Contact</h2>
         <p><strong>Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-        <p>Zone d'intervention : Toulouse Sud (Pouvourville, Ramonville, Rangueil).</p>
+        <p>Zone d'intervention : Toulouse Sud (Pouvourville, Ramonville, Rangueil) pour le matériel. <strong>Monde entier pour l'IA et le Web.</strong></p>
     </section>
 
     <footer>
-        <p>© 2026 - Show Shadow | Maintenance éco-responsable | Propulsé sous Debian</p>
+        <p>© 2026 - Show Shadow | Maintenance éco-responsable & IA à distance | Propulsé sous Debian</p>
     </footer>
 
     <script>
